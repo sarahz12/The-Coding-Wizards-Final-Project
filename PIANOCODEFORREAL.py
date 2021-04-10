@@ -226,6 +226,7 @@ C5_note = pygame.mixer.Sound("C5.wav")
 
 
 
+
 mixer.music.set_volume(0.7)
 black = (0,0,0)
 while True:
@@ -269,6 +270,11 @@ while True:
                   f4sharp_note.play(-1)
             if event.key == pygame.K_i:
                   g4sharp_note.play(-1)
+            if event.key == pygame.K_o:
+                  a4sharp_note.play(-1)
+            if event.key == pygame.K_p:
+                  c5sharp_note.play(-1)
+           
                   
                   
                 
@@ -304,4 +310,8 @@ while True:
                   f4sharp_note.stop()
             if event.key == pygame.K_i:
                   g4sharp_note.stop()
+            if event.key == pygame.K_o:
+                  a4sharp_note.stop()
+            if event.key == pygame.K_p:
+                  c5sharp_note.stop()
                   
