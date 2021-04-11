@@ -315,7 +315,7 @@ while True:
             if event.key == pygame.K_p:
                   c5sharp_note.stop()
                   
-# iPianoParallel.py
+# Visualizing the keyboard
 #
 # Demonstrates how to build a simple piano instrument playable
 # through the computer keyboard.
@@ -369,14 +369,14 @@ def beginNote( key ):
    """
  
    # loop through all known virtual keys
-   for i in range( len(virtualKeys) ):   
+   for ii in range( len(virtualKeys) ):   
  
       # if this is a known key (and NOT already pressed)
-      if key == virtualKeys[i] and key not in keysPressed:  
+      if key == virtualKeys[ii] and key not in keysPressed:  
  
          # "press" this piano key (by adding pressed key icon)
-         d.add( downKeyIcons[i], iconLeftXCoordinates[i], 0 )
-         Play.noteOn( pitches[i] )    # play corresponding note
+         d.add( downKeyIcons[ii], iconLeftXCoordinates[i], 0 )
+         Play.noteOn( pitches[ii] )    # play corresponding note
          keysPressed.append( key )    # avoid key-repeat
  
 def endNote( key ):
@@ -401,43 +401,4 @@ def endNote( key ):
 d.onKeyDown( beginNote )
 d.onKeyUp( endNote )
 
-import struct
-import math
-import pyaudio
-from itertools import count
-
-pa = pyaudio.PyAudio()
-
-FORMAT = pyaudio.paFloat32
-CHANNELS = 1
-RATE = 44100
-
-OUTPUT_BLOCK_TIME = 0.05
-OUTPUT_FRAMES_PER_BLOCK = int(RATE*OUTPUT_BLOCK_TIME)
-
-
-def sine_gen():
-    time = 0
-    format = "%df" % OUTPUT_FRAMES_PER_BLOCK
-    voices = []
-    voices.append(lambda sampletime: math.sin(sampletime * math.pi * 2 * 440.0))
-
-    for frame in count():
-        block = []
-        for i in xrange(OUTPUT_FRAMES_PER_BLOCK):
-            sampletime = time + (float(i) / OUTPUT_FRAMES_PER_BLOCK) * OUTPUT_BLOCK_TIME
-            sample = sum(voice(sampletime) for voice in voices) / len(voices)
-            block.append(sample)
-        yield struct.pack(format, *block)
-        time += OUTPUT_BLOCK_TIME
-        if frame == 20:
-            voices.append(
-                lambda sampletime: math.sin(sampletime * math.pi * 2 * 880.0)
-            )
-
-stream = pa.open(format=FORMAT,
-    channels=CHANNELS, rate=RATE, output=1)
-
-for i, block in enumerate(sine_gen()):
-    stream.write(block)
 
