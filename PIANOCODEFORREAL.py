@@ -327,7 +327,7 @@ from gui import *
 Play.setInstrument(PIANO)   # set desired MIDI instrument (0-127)
  
 # load piano image and create display with appropriate size
-pianoIcon = Icon("iPianoOctave.png")     # image for complete piano
+pianoIcon = Icon("pianooctave.jpeg")     # image for complete piano
 d = Display("iPiano", pianoIcon.getWidth(), pianoIcon.getHeight())
 d.add(pianoIcon)       # place image at top-left corner
  
@@ -340,12 +340,12 @@ d.add(pianoIcon)       # place image at top-left corner
 # load icons for pressed piano keys
 # (continue loading icons for additional piano keys)
 downKeyIcons = []    # holds all down piano-key icons
-downKeyIcons.append( Icon("iPianoWhiteLeftDown.png") )   # C
-downKeyIcons.append( Icon("iPianoBlackDown.png") )       # C sharp
-downKeyIcons.append( Icon("iPianoWhiteCenterDown.png") ) # D
-downKeyIcons.append( Icon("iPianoBlackDown.png") )       # D sharp
-downKeyIcons.append( Icon("iPianoWhiteRightDown.png") )  # E
-downKeyIcons.append( Icon("iPianoWhiteLeftDown.png") )   # F
+downKeyIcons.append( Icon("pianowhiteleftdown.jpeg") )   # C
+downKeyIcons.append( Icon("pianoblackleftdown.jpeg") )       # C sharp
+downKeyIcons.append( Icon("pianoDdown.jpeg") ) # D
+downKeyIcons.append( Icon("pianodsharpdown.jpeg") )       # D sharp
+downKeyIcons.append( Icon("pianoEdown.jpeg") )  # E
+downKeyIcons.append( Icon("pianoFdown.jpeg") )   # F
  
 # lists of virtual keys and pitches corresponding to above piano keys
 virtualKeys = [VK_Z, VK_S, VK_X, VK_D, VK_C, VK_V]
@@ -386,19 +386,17 @@ def endNote( key ):
    """
  
    # loop through known virtual keys
-   for i in range( len(virtualKeys) ):   
+   for ii in range( len(virtualKeys) ):   
  
       # if this is a known key (we can assume it is already pressed)
-      if key == virtualKeys[i]:  
+      if key == virtualKeys[ii]:  
  
          # "release" this piano key (by removing pressed key icon)
-         d.remove( downKeyIcons[i] )
-         Play.noteOff( pitches[i] )    # stop corresponding note
+         d.remove( downKeyIcons[ii] )
+         Play.noteOff( pitches[ii] )    # stop corresponding note
          keysPressed.remove( key )     # and forget key
  
 #####################################################################
 # associate callback functions with GUI events
 d.onKeyDown( beginNote )
 d.onKeyUp( endNote )
-
-
