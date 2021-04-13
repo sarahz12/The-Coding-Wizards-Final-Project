@@ -95,43 +95,24 @@ Created on Sun Apr  4 14:17:03 2021
    # numpy (should come pre-loaded), pygame, sys
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 samplerate = 44100 #Frequecy in Hz
 
-def get_wave(freq, duration = 0.75):
+def get_wave(freq, duration=0.75):
     '''
     Function takes the "frequecy" and "time_duration" for a wave 
     as the input and returns a "numpy array" of values at all points 
     in time
     '''
+    
     amplitude = 4096
     t = np.linspace(0, duration, int(samplerate * duration))
-    
-    wave = (1/2)**t * (amplitude * np.sin(2 * np.pi * freq * t) + (amplitude/2.) * np.sin(1. * np.pi * freq * t)  + (amplitude/3.) * np.sin(1/2. * np.pi * freq * t))
-    '''
-    ADD ENVELOPE
-    
     wave = amplitude * np.sin(2 * np.pi * freq * t)
-    + 2*amplitude/5 * np.sin(2 * np.pi * (freq + freq/3) * t)
-    + amplitude/2 * np.sin(2 * np.pi * (freq + 2*freq/3) * t)
-    + 3*amplitude/5 * np.sin(2 * np.pi * (freq + 3*freq/3) * t)
-    + 3*amplitude/5 * np.sin(2 * np.pi * (freq + 4 * freq/3) * t)
-    
-    wave2 = amplitude * np.sin(2 * np.pi * freq * t)
-    
-    import pdb; pdb.set_trace()
-    '''
-    
-    # + 2*amplitude/3 * np.sin(2 * np.pi * 250 * t)
-    # + amplitude/2 * np.sin(2 * np.pi * 710 * t)
-    
-    
-    # 
     
     return wave
 
-a_wave = get_wave(215, 1)
+# To get a 1 second long wave of frequency 440Hz
+a_wave = get_wave(440, 1)
 
 #wave features
 print(len(a_wave)) # 44100
@@ -179,23 +160,23 @@ write('twinkle-twinkle.wav', samplerate, data.astype(np.int16))
 #convert notes from dictionary entries to wave files:
 
 
-A3 = get_wave(note_freqs['A3'], 1)
-asharp3 = get_wave(note_freqs['asharp3'], 1)
-B3 = get_wave(note_freqs['B3'], 1)
+A3 = get_wave(note_freqs['A3'])
+asharp3 = get_wave(note_freqs['asharp3'])
+B3 = get_wave(note_freqs['B3'])
 C4 = get_wave(note_freqs['C4'])
-csharp4 = get_wave(note_freqs['csharp4'], 1)
+csharp4 = get_wave(note_freqs['csharp4'])
 D4 = get_wave(note_freqs['D4'])
-dsharp4 = get_wave(note_freqs['dsharp4'], 1)
+dsharp4 = get_wave(note_freqs['dsharp4'])
 E4 = get_wave(note_freqs['E4'])
 F4 = get_wave(note_freqs['F4'])
-fsharp4 = get_wave(note_freqs['fsharp4'], 1)
+fsharp4 = get_wave(note_freqs['fsharp4'])
 G4 = get_wave(note_freqs['G4'])
-gsharp4 = get_wave(note_freqs['gsharp4'], 1)
+gsharp4 = get_wave(note_freqs['gsharp4'])
 A4 = get_wave(note_freqs['A4'])
-asharp4 = get_wave(note_freqs['asharp4'], 1)
+asharp4 = get_wave(note_freqs['asharp4'])
 B4 = get_wave(note_freqs['B4'])
-csharp5 = get_wave(note_freqs['csharp5'], 1)
-C5 = get_wave(note_freqs['C5'], 1)
+csharp5 = get_wave(note_freqs['csharp5'])
+C5 = get_wave(note_freqs['C5'])
 
 # #create separate wave file for each note:
 write('A3.wav', samplerate, A3.astype(np.int16))
@@ -218,7 +199,7 @@ write('C5.wav', samplerate, C5.astype(np.int16))
 
 import pygame, sys
 from pygame import mixer
-pygame.mixer.pre_init(44100, -16, 1, 4096)
+pygame.mixer.pre_init(44100, -16, 2, 4096)
 pygame.init()
 screen_width=700
 screen_height=400
@@ -242,6 +223,9 @@ a4sharp_note = pygame.mixer.Sound("asharp4.wav")
 B4_note = pygame.mixer.Sound("B4.wav")
 c5sharp_note = pygame.mixer.Sound("csharp5.wav")
 C5_note = pygame.mixer.Sound("C5.wav")
+
+
+
 
 mixer.music.set_volume(0.7)
 black = (0,0,0)
@@ -297,39 +281,39 @@ while True:
                 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
-                  A3_note.fadeout(500)
+                  A3_note.stop()
             if event.key == pygame.K_s:
-                  B3_note.fadeout(500)
-            if event.key == pygame.K_d: 
-                  C4_note.fadeout(500)
+                  B3_note.stop()
+            if event.key == pygame.K_d: #when 1 is released, the music stops
+                  C4_note.stop()
             if event.key == pygame.K_f:
-                  D4_note.fadeout(500)
+                  D4_note.stop()
             if event.key == pygame.K_g:
-                  E4_note.fadeout(500)
+                  E4_note.stop()
             if event.key == pygame.K_h:
-                  F4_note.fadeout(500)
+                  F4_note.stop()
             if event.key == pygame.K_j:
-                  G4_note.fadeout(500)
+                  G4_note.stop()
             if event.key == pygame.K_k:
-                  A4_note.fadeout(500)
+                  A4_note.stop()
             if event.key == pygame.K_l:
-                  B4_note.fadeout(500)
+                  B4_note.stop()
             if event.key == pygame.K_SEMICOLON:
-                  C5_note.fadeout(500)
+                  C5_note.stop()
             if event.key == pygame.K_w:
-                  a3sharp_note.fadeout(500)
+                  a3sharp_note.stop()
             if event.key == pygame.K_r:
-                  c4sharp_note.fadeout(500)
+                  c4sharp_note.stop()
             if event.key == pygame.K_t:
-                  d4sharp_note.fadeout(500)
+                  d4sharp_note.stop()
             if event.key == pygame.K_u:
-                  f4sharp_note.fadeout(500)
+                  f4sharp_note.stop()
             if event.key == pygame.K_i:
-                  g4sharp_note.fadeout(500)
+                  g4sharp_note.stop()
             if event.key == pygame.K_o:
-                  a4sharp_note.fadeout(500)
+                  a4sharp_note.stop()
             if event.key == pygame.K_p:
-                  c5sharp_note.fadeout(500)
+                  c5sharp_note.stop()
                   
 # Visualizing the keyboard
 #
