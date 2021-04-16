@@ -4,7 +4,79 @@
 Created on Mon Apr 12 20:27:13 2021
 
 @author: laurelmyers
+
+
 """
+
+#generated notes starting from c4 up to B5:
+    
+import numpy as np
+import matplotlib.pyplot as plt
+
+samplerate = 44100 #Frequecy in Hz
+
+def get_wave(freq, duration = 0.75):
+    '''
+    Function takes the "frequecy" and "time_duration" for a wave 
+    as the input and returns a "numpy array" of values at all points 
+    in time
+    '''
+    amplitude = 4096
+    t = np.linspace(0, duration, int(samplerate * duration))
+    
+    wave = (amplitude * np.sin(2 * np.pi * freq * t) )+ (amplitude/2.) * np.sin(1. * np.pi * freq * t)  
+    return wave
+
+def get_piano_notes_2():
+    '''
+    Returns a dict object for all the piano 
+    note's frequencies
+    '''
+    # White keys are in Uppercase and black keys (sharps) are in lowercase
+    all_notes = ['C4_2', 'csharp4_2', 'D4_2','dsharp4_2', 'E4_2', 'F4_2', 'fsharp4_2', 'G4_2', 'gsharp4_2', 'A5_2', 'asharp5_2', 'B5_2', 'C5_2'] 
+    base_freq = 261.63 #Frequency of Note A3, the A before middle C
+    
+    note_freqs_2 = {all_notes[i]: base_freq * pow(2,(i/12)) for i in range(len(all_notes))}        
+    note_freqs_2[''] = 0.0 # silent note
+    
+    return note_freqs_2
+  
+  # To get the piano note's frequencies
+note_freqs_2 = get_piano_notes_2()
+
+
+from scipy.io.wavfile import write
+
+C4_2 = get_wave(note_freqs_2['C4_2'], 1)
+csharp4_2 = get_wave(note_freqs_2['csharp4_2'], 1)
+D4_2 = get_wave(note_freqs_2['D4_2'], 1)
+dsharp4_2 = get_wave(note_freqs_2['dsharp4_2'])
+E4_2 = get_wave(note_freqs_2['E4_2'], 1)
+F4_2 = get_wave(note_freqs_2['F4_2'], 1)
+fsharp4_2 = get_wave(note_freqs_2['fsharp4_2'])
+G4_2 = get_wave(note_freqs_2['G4_2'])
+gsharp4_2 = get_wave(note_freqs_2['gsharp4_2'], 1)
+A5_2 = get_wave(note_freqs_2['A5_2'])
+asharp5_2 = get_wave(note_freqs_2['asharp5_2'], 1)
+B5_2= get_wave(note_freqs_2['B5_2'])
+C5_2= get_wave(note_freqs_2['C5_2'])
+
+# #create separate wave file for each note:
+write('C4_2.wav', samplerate, C4_2.astype(np.int16))
+write('csharp4_2.wav', samplerate, csharp4_2.astype(np.int16))
+write('D4_2.wav', samplerate, D4_2.astype(np.int16))
+write('dsharp4_2.wav', samplerate, dsharp4_2.astype(np.int16))
+write('E4_2.wav', samplerate, E4_2.astype(np.int16))
+write('F4_2.wav', samplerate, F4_2.astype(np.int16))
+write('fsharp4_2.wav', samplerate, fsharp4_2.astype(np.int16))
+write('G4_2.wav', samplerate, G4_2.astype(np.int16))
+write('gsharp4_2.wav', samplerate, gsharp4_2.astype(np.int16))
+write('A5_2.wav', samplerate, A5_2.astype(np.int16))
+write('asharp5_2.wav', samplerate, asharp5_2.astype(np.int16))
+write('B5_2.wav', samplerate, B5_2.astype(np.int16))
+write('C5_2.wav', samplerate, C5_2.astype(np.int16))
+
+#--------------GUI CODE: NOT OURS, JUST ADDED THE NOTES GENERATED--------------------------
 import pygame
 from playsound import playsound
 
@@ -13,23 +85,23 @@ white = (255,255,255)
 grey = (175,175,175)
 pygame.init()
 
-background = pygame.image.load('background.jpg')
+background = pygame.image.load('harrypotter.jpeg')
 
-A = 'Music_Notes\A.wav'
-B = 'Music_Notes\B.wav'
-C = 'Music_Notes\C.wav'
-C1 = 'Music_Notes\C1.wav'
-D = 'Music_Notes\D.wav'
-E = 'Music_Notes\E.wav'
-F = 'Music_Notes\F.wav'
-G = 'Music_Notes\G.wav'
+A = 'A5_2.wav'
+B = 'B5_2.wav'
+C = 'C4_2.wav'
+C1 = 'C5_2.wav'
+D = 'D4_2.wav'
+E = 'E4_2.wav'
+F = 'F4_2.wav'
+G = 'G4_2.wav'
 
 
-C_s = 'Music_Notes\C_s.wav'
-D_s = 'Music_Notes\D_s.wav'
-F_s = 'Music_Notes\F_s.wav'
-G_s = 'Music_Notes\G_s.wav'
-A_s = 'Music_Notes\A_s.wav'
+C_s = 'csharp4_2.wav'
+D_s = 'dsharp4_2.wav'
+F_s = 'fsharp4_2.wav'
+G_s = 'gsharp4_2.wav'
+A_s = 'asharp5_2.wav'
 
 
 screen = pygame.display.set_mode((800,600))
@@ -97,11 +169,12 @@ def white_btn(x,note):
     elif (x == 8) and (y_coord < mouse[1] < y_coord+175) and (x_coord < mouse[0] < x_coord + 50):
         pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
         if click[0] == 1:
-           playsound(note,False)
+            playsound(note,False)
 
     else:
         pygame.draw.rect(screen,white,(x_coord,y_coord,50,175))
 
+import sys
 
 running = True
 while running:
@@ -109,6 +182,7 @@ while running:
 
         if events.type == pygame.QUIT:
             pygame.quit()
+            sys.exit()
             quit()
 
     screen.fill((0,100,130))
@@ -135,3 +209,4 @@ while running:
     black_btn(6,A_s)
 
     pygame.display.update()
+    #system exit for quit

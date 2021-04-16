@@ -146,7 +146,7 @@ def get_piano_notes():
     note's frequencies
     '''
     # White keys are in Uppercase and black keys (sharps) are in lowercase
-    all_notes = ['A3', 'asharp3', 'B3','C4', 'csharp4', 'D4', 'dsharp4', 'E4', 'F4', 'fsharp4', 'G4', 'gsharp4', 'A4', 'asharp4', 'B4','csharp5','C5'] 
+    all_notes = ['A3', 'asharp3', 'B3','C4', 'csharp4', 'D4', 'dsharp4', 'E4', 'F4', 'fsharp4', 'G4', 'gsharp4', 'A4', 'asharp4', 'B4','C5', 'csharp5'] 
     base_freq = 220.00 #Frequency of Note A3, the A before middle C
     
     note_freqs = {all_notes[i]: base_freq * pow(2,(i/12)) for i in range(len(all_notes))}        
@@ -156,28 +156,12 @@ def get_piano_notes():
   
   # To get the piano note's frequencies
 note_freqs = get_piano_notes()
-pprint(note_freqs)
 
- 
-import numpy as np
 
-def get_song_data(music_notes):
-    '''
-    Function to concatenate all the waves (notes)
-    '''
-    note_freqs = get_piano_notes() # Function that we made earlier
-    song = [get_wave(note_freqs[note]) for note in music_notes.split('-')]
-    song = np.concatenate(song)
-    return song
-
-music_notes = 'C4-C4-gsharp4-asharp3-B3' 
-data = get_song_data(music_notes)
-
-data = data * (16300/np.max(data)) # Adjusting the Amplitude (Optional)
+# Adjusting the Amplitude (Optional)
 from scipy.io.wavfile import write
-write('twinkle-twinkle.wav', samplerate, data.astype(np.int16))
-#convert notes from dictionary entries to wave files:
 
+#convert notes from dictionary entries to wave files:
 
 A3 = get_wave(note_freqs['A3'], 1)
 asharp3 = get_wave(note_freqs['asharp3'], 1)
@@ -274,8 +258,6 @@ while True:
                   A4_note.play(-1)
             if event.key == pygame.K_l:
                   B4_note.play(-1)
-            if event.key == pygame.K_SEMICOLON:
-                  C5_note.play(-1)
             if event.key == pygame.K_w:
                   a3sharp_note.play(-1)
             if event.key == pygame.K_r:
@@ -290,6 +272,9 @@ while True:
                   a4sharp_note.play(-1)
             if event.key == pygame.K_p:
                   c5sharp_note.play(-1)
+            if event.key == pygame.K_SEMICOLON:
+                  C5_note.play(-1)
+                  
            
                   
                   
@@ -314,8 +299,6 @@ while True:
                   A4_note.fadeout(500)
             if event.key == pygame.K_l:
                   B4_note.fadeout(500)
-            if event.key == pygame.K_SEMICOLON:
-                  C5_note.fadeout(500)
             if event.key == pygame.K_w:
                   a3sharp_note.fadeout(500)
             if event.key == pygame.K_r:
@@ -330,6 +313,8 @@ while True:
                   a4sharp_note.fadeout(500)
             if event.key == pygame.K_p:
                   c5sharp_note.fadeout(500)
+            if event.key == pygame.K_SEMICOLON:
+                  C5_note.fadeout(500)
                   
 # Visualizing the keyboard
 #
