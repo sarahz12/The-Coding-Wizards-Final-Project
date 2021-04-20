@@ -274,12 +274,10 @@ while True:
                   c5sharp_note.play(-1)
             if event.key == pygame.K_SEMICOLON:
                   C5_note.play(-1)
+            
                   
            
                   
-                  
-                
-                
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
                   A3_note.fadeout(500)
