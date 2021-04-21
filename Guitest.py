@@ -3,7 +3,8 @@
 """
 Created on Mon Apr 12 20:27:13 2021
 
-@author: laurelmyers
+# written by: Sarah Zylberfuden and pair programmed with Michelle Liu
+# debugging: Laurel Myers
 
 
 """
@@ -22,8 +23,8 @@ def get_wave(freq, duration = 0.75):
     in time
     '''
     amplitude = 4096
-    t = np.linspace(0, duration, int(samplerate * duration))
-    
+    t = np.linspace(0, duration, int(samplerate * duration)) # creating a numeric sequence
+    # creating the actual wave by combining amplitude, freq, t
     wave = (amplitude * np.sin(2 * np.pi * freq * t) )+ (amplitude/2.) * np.sin(1. * np.pi * freq * t)  
     return wave
 
@@ -44,10 +45,10 @@ def get_piano_notes_2():
   # To get the piano note's frequencies
 note_freqs_2 = get_piano_notes_2()
 
-
+# so that code can recognize the sound of the keys
 from scipy.io.wavfile import write
 
-C4_2 = get_wave(note_freqs_2['C4_2'], 1)
+C4_2 = get_wave(note_freqs_2['C4_2'], 1) # retrieving note frequencies, duration
 csharp4_2 = get_wave(note_freqs_2['csharp4_2'], 1)
 D4_2 = get_wave(note_freqs_2['D4_2'], 1)
 dsharp4_2 = get_wave(note_freqs_2['dsharp4_2'])
@@ -84,7 +85,7 @@ black = (0,0,0)
 white = (255,255,255)
 grey = (175,175,175)
 pygame.init()
-
+# we chose the background image behind the piano
 background = pygame.image.load('harrypotter.jpeg')
 
 A = 'A5_2.wav'
@@ -103,7 +104,7 @@ F_s = 'fsharp4_2.wav'
 G_s = 'gsharp4_2.wav'
 A_s = 'asharp5_2.wav'
 
-
+# display the screen 800,600 = dimensions
 screen = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Piano")
 
@@ -111,22 +112,22 @@ def text_objects(text, font):
     textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
 
-
+# defining the black keys
 def black_btn(x,note):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-    x_coord = 55*x+175
-    y_coord = 200
+     mouse = pygame.mouse.get_pos()
+     click = pygame.mouse.get_pressed()
+     x_coord = 55*x+175
+     y_coord = 200
 
-    if x_coord+35 > mouse[0] > x_coord and y_coord+100>mouse[1]>y_coord:
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
-        if click[0] == 1:
-            playsound(note,False)
+     if x_coord+35 > mouse[0] > x_coord and y_coord+100>mouse[1]>y_coord:
+         pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
+         if click[0] == 1:
+             playsound(note,False)
     
-    else:
-        pygame.draw.rect(screen,black,(x_coord,y_coord,35,100))
+     else:
+         pygame.draw.rect(screen,black,(x_coord,y_coord,35,100))
 
-
+# defining white keys
 def white_btn(x,note):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
@@ -185,15 +186,15 @@ while running:
             sys.exit()
             quit()
 
-    screen.fill((0,100,130))
-    screen.blit(background, (0, 0))
+    screen.fill((0,100,130)) # color argument
+    screen.blit(background, (0, 1))
     largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects("Piano", largeText)
     TextRect.center = (400,100)
     screen.blit(TextSurf, TextRect)
 
 
-    white_btn(1,C)
+    white_btn(1,C) # number of location and note
     white_btn(2,D)
     white_btn(3,E)
     white_btn(4,F)
@@ -202,7 +203,7 @@ while running:
     white_btn(7,B)
     white_btn(8,C1)
 
-    black_btn(1,C_s)
+    black_btn(1,C_s) # same as above but with sharps 
     black_btn(2,D_s)
     black_btn(4,F_s)
     black_btn(5,G_s)
