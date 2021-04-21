@@ -87,7 +87,7 @@ grey = (175,175,175)
 pygame.init()
 # we chose the background image behind the piano
 background = pygame.image.load('harrypotter.jpeg')
-
+# connecting note names to the wave files
 A = 'A5_2.wav'
 B = 'B5_2.wav'
 C = 'C4_2.wav'
@@ -114,13 +114,13 @@ def text_objects(text, font):
 
 # defining the black keys
 def black_btn(x,note):
-     mouse = pygame.mouse.get_pos()
+     mouse = pygame.mouse.get_pos() # clicking detection
      click = pygame.mouse.get_pressed()
      x_coord = 55*x+175
      y_coord = 200
 
      if x_coord+35 > mouse[0] > x_coord and y_coord+100>mouse[1]>y_coord:
-         pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
+         pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100)) # populating surface with 'objects' (keys) to be displayed
          if click[0] == 1:
              playsound(note,False)
     
@@ -185,9 +185,9 @@ while running:
             pygame.quit()
             sys.exit()
             quit()
-
+# goal to create a canvas of desired size and then create a surface of smaller size containing the object to be displayed
     screen.fill((0,100,130)) # color argument
-    screen.blit(background, (0, 1))
+    screen.blit(background, (0, 0)) # overlap, the surface on the canvas at the rect position 
     largeText = pygame.font.Font('freesansbold.ttf',115)
     TextSurf, TextRect = text_objects("Piano", largeText)
     TextRect.center = (400,100)

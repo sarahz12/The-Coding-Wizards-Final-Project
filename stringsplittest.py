@@ -3,7 +3,9 @@
 """
 Created on Fri Apr 16 14:39:38 2021
 
-@author: laurelmyers
+written by: laurelmyers
+debugging: Sarah Zylberfuden
+Pair programmed with: Michelle Liu
 """
 
 #!/usr/bin/env python3
@@ -54,7 +56,7 @@ note_freqs_2 = get_piano_notes_2()
 
 
 from scipy.io.wavfile import write
-
+# couldnt we make this into a function somehow?
 C4_2 = get_wave(note_freqs_2['C4_2'], 1)
 csharp4_2 = get_wave(note_freqs_2['csharp4_2'], 1)
 D4_2 = get_wave(note_freqs_2['D4_2'], 1)
