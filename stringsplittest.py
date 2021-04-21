@@ -118,14 +118,6 @@ pygame.display.set_caption("Piano")
 def text_objects(text, font):
     textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
-
-
-def black_btn(x,note):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-    x_coord = 55*x+175
-    y_coord = 200
-
     
 # generate a list with notes where - is a rest:
     
@@ -133,67 +125,81 @@ def split_song_data(song_notes):
     song_split = song_notes.split('-')
     return song_split
     
+pygame.draw.rect(screen,white,(195,200,50,175)) #For C key
+
+pygame.draw.rect(screen,white,(250,200,35,100))
+pygame.draw.rect(screen,white,(250,200 +100,50,75)) #for D key
+
+pygame.draw.rect(screen,white,(305,200,50,175))
+
+pygame.draw.rect(screen,white,(360,200,50,175))
+
+pygame.draw.rect(screen,white,(415,200,50,175))
+
+pygame.draw.rect(screen,white,(470,200,50,175))
+
+pygame.draw.rect(screen,white,(525,200,35,100))
+pygame.draw.rect(screen,white,(525,200 +100,50,75)) #for B key
+
+pygame.draw.rect(screen,white,(580,200,50,175))
+
+
+#for black keys
+pygame.draw.rect(screen,black,(230,200,35,100))
+
+pygame.draw.rect(screen,black,(285,200,35,100))
+
+pygame.draw.rect(screen,black,(340,200,35,100))
+
+pygame.draw.rect(screen,black,(395,200,35,100))
+
+pygame.draw.rect(screen,black,(450,200,35,100))
+
+
+# twinkle_notes = 'C--C--G--G--A--A--G---F--F--E--E--D--D--C---G--G--F--F--E--E--D---G--G--F--F--E--E--D---C--C--G--G--A--A--G---F--F--E--E--D--D--C'
+# twinkle_song = split_song_data(twinkle_notes)
+
+# dict = {'C': [195, 200], 'D': [250,200],'E':[305,200], 'F': [360,200], 
+#         'G':[415,200], 'A':[470,200], 'B': [525,200], 'C1': [580,200], 
+#         'C_s': [230,200], 'D_s': [285,200], 'F_s': [340,200], 'G_s': [395,200],'A_s': [450,200]} # fill in this
+# prevNote = None
+
+# for note in twinkle_song:
+#     x_coord = dict[note][0]
+#     y_coord = dict[note][1]
+#     if prevNote is not None:
+    
+#         prev_x = dict[prevNote][0]
+#         prev_y = dict[prevNote][1]
+#         if prevNote == 'B' or prevNote == 'D':
+#             pygame.draw.rect(screen,white,(prev_x,prev_y,35,100))
+#             pygame.draw.rect(screen,white,(prev_x,prev_y +100,50,75))
+#         # rect(prev_x, prev_y, 100, 175) # white
+    
+#     if note == '-':
+#             playsound('Silence.wav')
+        
+#     if note == 'B' or note == 'D': 
+#             pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
+#             pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
+  
+        
+#     else:
+#         pygame.draw.rect(screen,white,(prev_x,prev_y,50,175))
+        
+#     playsound(note)
+   
+#     prevNote = note
     
 
-twinkle_notes = 'C-C-G-G-A-A-G--F-F-E-E-D-D-C--G-G-F-F-E-E-D--G-G-F-F-E-E-D--C-C-G-G-A-A-G--F-F-E-E-D-D-C'
-
-    for note in range (len(twinkle_songsong)):
-        
-
-if .
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
-        playsound(note,False)
-
-    else:
-        pygame.draw.rect(screen,black,(x_coord,y_coord,35,100))
+    # timer (1 sec)
+    
+    
+    
+    
 
 
-def white_btn(x,note):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-    x_coord = 55*x+140
-    y_coord = 200
-    x_coord1 = 55*x + 175 # Where the black key starts
-    y_coord1 = 275 # where the black keys start and are 100 long.
 
-    if (y_coord+100< mouse[1] < y_coord+175) and (x_coord+50 > mouse[0] > x_coord):
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
-        if click[0] == 1:
-            playsound(note,False)
-
-    elif (y_coord+100 > mouse[1] > y_coord) and (x_coord+35 > mouse[0] > x_coord) and (x in (1,4)):
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
-        pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
-        if click[0] == 1:
-            playsound(note,False)
-
-    elif (y_coord+100 > mouse[1] > y_coord) and (x_coord+35 < mouse[0] < x_coord+50) and (x in (1,4)):
-        pygame.draw.rect(screen,white,(x_coord,y_coord,50,175))
-
-    elif (y_coord+100 > mouse[1] > y_coord) and (x_coord < mouse[0] < x_coord + 15) and (x in (2,5,6)):
-        pygame.draw.rect(screen,white,(x_coord,y_coord,50,175))
-
-    elif (y_coord+100 > mouse[1] > y_coord) and (x_coord < mouse[0] < x_coord + 35) and (x in (2,5,6)):
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
-        if click[0] == 1:
-            playsound(note,False)
-
-    elif (y_coord+100 > mouse[1] > y_coord) and (x_coord+35 < mouse[0] < x_coord+50) and (x in (2,5,6)):
-        pygame.draw.rect(screen,white,(x_coord,y_coord,50,175))
-
-    elif (y_coord+100 > mouse[1] > y_coord) and (x_coord+15 < mouse[0] < x_coord+50) and (x in (3,7)):
-        pygame.draw.rect(screen,grey,(x_coord +15,y_coord,35,100))
-        pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
-        if click[0] == 1:
-            playsound(note,False)
-
-    elif (x == 8) and (y_coord < mouse[1] < y_coord+175) and (x_coord < mouse[0] < x_coord + 50):
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
-        if click[0] == 1:
-            playsound(note,False)
-
-    else:
-        pygame.draw.rect(screen,white,(x_coord,y_coord,50,175))
 
 import sys
 
@@ -212,21 +218,5 @@ while running:
     TextSurf, TextRect = text_objects("Piano", largeText)
     TextRect.center = (400,100)
     screen.blit(TextSurf, TextRect)
-
-
-    white_btn(1,C)
-    white_btn(2,D)
-    white_btn(3,E)
-    white_btn(4,F)
-    white_btn(5,G)
-    white_btn(6,A)
-    white_btn(7,B)
-    white_btn(8,C1)
-
-    black_btn(1,C_s)
-    black_btn(2,D_s)
-    black_btn(4,F_s)
-    black_btn(5,G_s)
-    black_btn(6,A_s)
 
     pygame.display.update()
