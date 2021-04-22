@@ -14,7 +14,7 @@ Time taken: 9 hours (including research)
 #generated notes starting from c4 up to B5:
     
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 samplerate = 44100 #Frequecy in Hz
 
@@ -222,6 +222,7 @@ def auto_play():
             if prevNote == 'D':
                 pygame.draw.rect(screen,white,(prev_x,prev_y,35,100)) 
                 pygame.draw.rect(screen,white,(prev_x,prev_y +100,50,75)) # This is to create the white key underneath the black to keep it's piano shape. 
+                # + 100 indicates that the rectangle starts lower than the y_coord
                 draw_black_keys()
             elif prevNote == 'A' or prevNote == 'C' or prevNote == 'E' or prevNote == 'F' or prevNote == 'G' or prevNote == 'C1':
                 pygame.draw.rect(screen,white,(prev_x,prev_y,50,175))
@@ -263,6 +264,8 @@ while running:
    
 
     # timer (1 sec)
+
+    # IMPORTANT: type exit() in command line in order to stop the piano
     
     
 
