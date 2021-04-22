@@ -3,15 +3,10 @@
 """
 Created on Fri Apr 16 14:39:38 2021
 
-@author: laurelmyers
-"""
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr 12 20:27:13 2021
-
-@author: laurelmyers
+Written by: Laurel Myers
+Pair Programmed with: Sarah Zylberfuden
+Debugging: All
+Time taken: 9 hours (including research)
 
 
 """
@@ -32,7 +27,7 @@ def get_wave(freq, duration = 0.75):
     amplitude = 4096
     t = np.linspace(0, duration, int(samplerate * duration))
     
-    wave = (amplitude * np.sin(2 * np.pi * freq * t) )+ (amplitude/2.) * np.sin(1. * np.pi * freq * t)  
+    wave = (amplitude * np.sin(2 * np.pi * freq * t) )+ (amplitude/2.) * np.sin(1. * np.pi * freq * t)  # sine wave
     return wave
 
 def get_piano_notes_2():
@@ -138,34 +133,36 @@ def piano_gui():
     
     pygame.draw.rect(screen,white,(195,200,50,175)) #For C key
 
-    pygame.draw.rect(screen,white,(250,200,35,100))
-    pygame.draw.rect(screen,white,(250,200 +100,50,75)) #for D key
+    pygame.draw.rect(screen,white,(250,200,35,100)) #for D key
+    pygame.draw.rect(screen,white,(250,200 +100,50,75)) # This is to create a second white rectangle directly below the thinner white triangle, this is done in order to have the white key overlapped by two black keys
 
-    pygame.draw.rect(screen,white,(305,200,50,175))
+    pygame.draw.rect(screen,white,(305,200,50,175)) # for E key
     
-    pygame.draw.rect(screen,white,(360,200,50,175))
+    pygame.draw.rect(screen,white,(360,200,50,175)) # for F key
     
-    pygame.draw.rect(screen,white,(415,200,50,175))
+    pygame.draw.rect(screen,white,(415,200,50,175)) # for G key
     
-    pygame.draw.rect(screen,white,(470,200,50,175))
+    pygame.draw.rect(screen,white,(470,200,50,175)) # for A key
     
-    pygame.draw.rect(screen,white,(525,200,50,100))
-    pygame.draw.rect(screen,white,(525,200 +100,50,75)) #for B key
+    pygame.draw.rect(screen,white,(525,200,50,100)) #for B key
+    pygame.draw.rect(screen,white,(525,200 +100,50,75)) 
     
-    pygame.draw.rect(screen,white,(580,200,50,175))
+    pygame.draw.rect(screen,white,(580,200,50,175)) # for C1 key
     
     
     #for black keys
-    pygame.draw.rect(screen,black,(230,200,35,100))
+    pygame.draw.rect(screen,black,(230,200,35,100)) # C sharp
     
-    pygame.draw.rect(screen,black,(285,200,35,100))
+    pygame.draw.rect(screen,black,(285,200,35,100)) # D sharp
     
-    pygame.draw.rect(screen,black,(395,200,35,100))
+    pygame.draw.rect(screen,black,(395,200,35,100)) # F sharp
     
-    pygame.draw.rect(screen,black,(450,200,35,100))
+    pygame.draw.rect(screen,black,(450,200,35,100)) # G sharp
     
-    pygame.draw.rect(screen,black,(505,200,35,100))
-    
+    pygame.draw.rect(screen,black,(505,200,35,100)) # A sharp
+
+# This is a second function created, because, at first, we noticed that the black keys would tend to disappear
+# This function is to prevent that!  
 def draw_black_keys():
     pygame.draw.rect(screen,black,(230,200,35,100))
     
@@ -178,9 +175,9 @@ def draw_black_keys():
     pygame.draw.rect(screen,black,(505,200,35,100))
 
 def auto_play():
-    
+    # line 177 have the keys to the song being played and line 178 splits the notes when played
     twinkle_notes = 'C--C--G--G--A--A--G---F--F--E--E--D--D--C---G--G--F--F--E--E--D---G--G--F--F--E--E--D---C--C--G--G--A--A--G---F--F--E--E--D--D--C'
-    twinkle_song = split_song_data(twinkle_notes)
+    twinkle_song = split_song_data(twinkle_notes) # when the note has three dashes instead of two, that indicates a pause
 
     print(twinkle_song)
     
@@ -200,10 +197,10 @@ def auto_play():
         
             x_coord = key_dict[note][0]
             y_coord = key_dict[note][1]
-            #turn current note grey
             
+            #turns the note being played grey
             if note == 'D': 
-                pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
+                pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100)) # last two numbers are width and height
                 pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
                 draw_black_keys()
             elif note == 'B':
@@ -223,8 +220,8 @@ def auto_play():
             prev_y = key_dict[prevNote][1]
         
             if prevNote == 'D':
-                pygame.draw.rect(screen,white,(prev_x,prev_y,35,100))
-                pygame.draw.rect(screen,white,(prev_x,prev_y +100,50,75))
+                pygame.draw.rect(screen,white,(prev_x,prev_y,35,100)) 
+                pygame.draw.rect(screen,white,(prev_x,prev_y +100,50,75)) # This is to create the white key underneath the black to keep it's piano shape. 
                 draw_black_keys()
             elif prevNote == 'A' or prevNote == 'C' or prevNote == 'E' or prevNote == 'F' or prevNote == 'G' or prevNote == 'C1':
                 pygame.draw.rect(screen,white,(prev_x,prev_y,50,175))
