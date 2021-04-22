@@ -7,6 +7,7 @@ Written by: Laurel Myers and Sarah Zylberfuden
 Took turns pair programming
 Debugging: Michelle Liu
 Time taken: 18 hours (including research)
+(9 hours coding, 9 hours researching and looking at YouTube videos)
 
 
 """
@@ -263,10 +264,8 @@ while running:
     piano_gui()
     pygame.display.update()
     auto_play()
-   
 
     # timer (1 sec)
-
     # IMPORTANT: type exit() in command line in order to stop the piano
     
     
