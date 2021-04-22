@@ -1,3 +1,5 @@
+# WE ENDED UP NOT USING THIS SIGH
+# Time Spent: 2 hours
 # import simpleaudio as sa
 
 # filename = 'myfile.wav'
@@ -102,7 +104,7 @@ d.add(pianoIcon)       # place image at top-left corner
 # virtual keys corresponding to those piano keys and the corresponding
 # pitches.  These lists should be expanded to cover the whole octave
 # (or more).
- 
+# the jpeg images were created from stock images
 # load icons for pressed piano keys
 # (continue loading icons for additional piano keys)
 downKeyIcons = []    # holds all down piano-key icons
