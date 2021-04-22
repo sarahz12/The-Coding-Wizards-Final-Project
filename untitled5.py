@@ -138,11 +138,11 @@ def piano_gui():
     
     pygame.draw.rect(screen,black,(285,200,35,100))
     
-    pygame.draw.rect(screen,black,(340,200,35,100))
-    
     pygame.draw.rect(screen,black,(395,200,35,100))
     
     pygame.draw.rect(screen,black,(450,200,35,100))
+    
+    pygame.draw.rect(screen,black,(505,200,35,100))
     
 def draw_black_keys():
     pygame.draw.rect(screen,black,(230,200,35,100))

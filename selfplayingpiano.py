@@ -125,6 +125,15 @@ def split_song_data(song_notes):
     song_split = song_notes.split('-')
     return song_split
 
+# following this formula, taken from another git user: 
+    #black keys:
+    #x_coord = 55*x+175
+     #y_coord = 200
+     
+     #white keys: 
+    # x_coord = 55*x+140
+    y_coord = 200
+
 def piano_gui():
     
     pygame.draw.rect(screen,white,(195,200,50,175)) #For C key
@@ -140,7 +149,7 @@ def piano_gui():
     
     pygame.draw.rect(screen,white,(470,200,50,175))
     
-    pygame.draw.rect(screen,white,(525,200,35,100))
+    pygame.draw.rect(screen,white,(525,200,50,100))
     pygame.draw.rect(screen,white,(525,200 +100,50,75)) #for B key
     
     pygame.draw.rect(screen,white,(580,200,50,175))
@@ -151,24 +160,25 @@ def piano_gui():
     
     pygame.draw.rect(screen,black,(285,200,35,100))
     
-    pygame.draw.rect(screen,black,(340,200,35,100))
-    
     pygame.draw.rect(screen,black,(395,200,35,100))
     
     pygame.draw.rect(screen,black,(450,200,35,100))
+    
+    pygame.draw.rect(screen,black,(505,200,35,100))
     
 def draw_black_keys():
     pygame.draw.rect(screen,black,(230,200,35,100))
     
     pygame.draw.rect(screen,black,(285,200,35,100))
     
-    pygame.draw.rect(screen,black,(340,200,35,100))
-    
     pygame.draw.rect(screen,black,(395,200,35,100))
     
     pygame.draw.rect(screen,black,(450,200,35,100))
+    
+    pygame.draw.rect(screen,black,(505,200,35,100))
 
 def auto_play():
+    
     twinkle_notes = 'C--C--G--G--A--A--G---F--F--E--E--D--D--C---G--G--F--F--E--E--D---G--G--F--F--E--E--D---C--C--G--G--A--A--G---F--F--E--E--D--D--C'
     twinkle_song = split_song_data(twinkle_notes)
 
@@ -176,7 +186,7 @@ def auto_play():
     
     key_dict = {'C': [195, 200], 'D': [250,200],'E':[305,200], 'F': [360,200], 
             'G':[415,200], 'A':[470,200], 'B': [525,200], 'C1': [580,200], 
-            'C_s': [230,200], 'D_s': [285,200], 'F_s': [340,200], 'G_s': [395,200],'A_s': [450,200], '':[0,0]} # 
+            'C_s': [230,200], 'D_s': [285,200], 'F_s': [395,200], 'G_s': [450,200],'A_s': [505,200], '':[0,0]} # 
     prevNote = ''
     
     play_file_name = ''
@@ -192,10 +202,14 @@ def auto_play():
             y_coord = key_dict[note][1]
             #turn current note grey
             
-            if note == 'B' or note == 'D': 
+            if note == 'D': 
                 pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
                 pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
                 draw_black_keys()
+            elif note == 'B':
+                 pygame.draw.rect(screen,grey,(x_coord +15,y_coord,50,100))
+                 pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
+                 draw_black_keys()
             elif note == 'A' or note == 'C' or note == 'E' or note == 'F' or note == 'G' or note == 'C1':# fill in for black keys
                 pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
                 draw_black_keys()
@@ -208,13 +222,17 @@ def auto_play():
             prev_x = key_dict[prevNote][0]
             prev_y = key_dict[prevNote][1]
         
-            if prevNote == 'B' or prevNote == 'D':
+            if prevNote == 'D':
                 pygame.draw.rect(screen,white,(prev_x,prev_y,35,100))
                 pygame.draw.rect(screen,white,(prev_x,prev_y +100,50,75))
                 draw_black_keys()
             elif prevNote == 'A' or prevNote == 'C' or prevNote == 'E' or prevNote == 'F' or prevNote == 'G' or prevNote == 'C1':
                 pygame.draw.rect(screen,white,(prev_x,prev_y,50,175))
                 draw_black_keys()
+            elif prevNote == 'B':
+                 pygame.draw.rect(screen,white,(x_coord +15,y_coord,50,100))
+                 pygame.draw.rect(screen,white,(x_coord,y_coord +100,50,75))
+                 draw_black_keys()
             elif prevNote == 'C_s' or prevNote == 'D_s' or prevNote == 'F_s' or prevNote == 'G_s' or prevNote == 'A_s':
                 pygame.draw.rect(screen,black,(x_coord,y_coord,35,100))
         prevNote = note
