@@ -45,4 +45,4 @@ selfplayingpianoFINAL.py:
 This code creates a self-playing piano, which currently plays “Twinkle Twinkle Little Star”  but which can be altered easily to play any number of songs (once translated into string inputs corresponding to the notes in our dictionary). This borrows somewhat from the code written by Imram Khan, but we drew the GUI in a completely different way: using equations from the original code, we did the math by hand to find the coordinates for each key, and initialized the GUI by creating a function piano_gui. We then used a for loop which overlays white or black keys with grey ones and then overlays another white or black key once the next note plays (in the case of the black keys, we overlay all the black keys with black rectangles after every iteration--details can be found in the code). The piano plays .wav files created from the altered sine wave generated in PIANOCODEFORREAL.py).
 
 
-Enjoy!
+Ultimately, the code should generate a piano and a self-playing song.
