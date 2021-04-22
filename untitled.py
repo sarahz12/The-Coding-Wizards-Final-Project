@@ -316,7 +316,8 @@ while True:
                   c5sharp_note.stop()
                   
 # Visualizing the keyboard
-#
+# THIS WAS CODE THAT I, SARAH, TRIED for the GUI, but we ended up doing different code instead
+# a lot of this was preexisting code we thought would work for the context of our project
 # Demonstrates how to build a simple piano instrument playable
 # through the computer keyboard.
 #

@@ -3,7 +3,8 @@
 """
 Created on Fri Apr 16 13:43:17 2021
 
-@author: laurelmyers
+@author Sarah Zylberfuden and Laurel Myers
+Preexisting code to inspire for self-playing piano
 """
 
 import os 
