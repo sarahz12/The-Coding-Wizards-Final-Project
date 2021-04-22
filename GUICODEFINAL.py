@@ -3,8 +3,10 @@
 """
 Created on Mon Apr 12 20:27:13 2021
 
-# written by: Sarah Zylberfuden and pair programmed with Michelle Liu
-# debugging: Laurel Myers
+# Written by: Sarah Zylberfuden
+ Pair programmed with Michelle Liu
+# Debugging: Laurel Myers
+Time Spent: 9 hours
 
 
 """
@@ -131,10 +133,10 @@ def black_btn(x,note):
 def white_btn(x,note):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
-    x_coord = 55*x+140
+    x_coord = 55*x+140 # numbers retrieved from other code
     y_coord = 200
-    x_coord1 = 55*x + 175 # Where the black key starts
-    y_coord1 = 275 # where the black keys start and are 100 long.
+    x_coord1 = 55*x + 175 
+    y_coord1 = 275 
 
     if (y_coord+100< mouse[1] < y_coord+175) and (x_coord+50 > mouse[0] > x_coord):
         pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
@@ -143,7 +145,7 @@ def white_btn(x,note):
 
     elif (y_coord+100 > mouse[1] > y_coord) and (x_coord+35 > mouse[0] > x_coord) and (x in (1,4)):
         pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100))
-        pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
+        pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75)) # This is to keep the piano shape: without it, there would be only a white rect and nothing near the black keys
         if click[0] == 1:
             playsound(note,False)
 
@@ -154,7 +156,7 @@ def white_btn(x,note):
         pygame.draw.rect(screen,white,(x_coord,y_coord,50,175))
 
     elif (y_coord+100 > mouse[1] > y_coord) and (x_coord < mouse[0] < x_coord + 35) and (x in (2,5,6)):
-        pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
+        pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175)) # makes the key grey when clicked on 
         if click[0] == 1:
             playsound(note,False)
 
@@ -163,7 +165,7 @@ def white_btn(x,note):
 
     elif (y_coord+100 > mouse[1] > y_coord) and (x_coord+15 < mouse[0] < x_coord+50) and (x in (3,7)):
         pygame.draw.rect(screen,grey,(x_coord +15,y_coord,35,100))
-        pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75))
+        pygame.draw.rect(screen,grey,(x_coord,y_coord +100,50,75)) # This is to keep the piano shape: without it, there would be only a white rect and nothing near the black keys
         if click[0] == 1:
             playsound(note,False)
 

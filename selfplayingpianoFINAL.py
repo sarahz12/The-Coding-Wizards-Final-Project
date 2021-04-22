@@ -3,7 +3,10 @@
 """
 Created on Wed Apr 21 18:39:16 2021
 
-@author: laurelmyers
+Written By: Laurel Myers and Sarah Zylberfuden
+Took turns pair programming between writers
+Debugging by: Michelle Liu
+Time spent total: 20 hours (includes research, TA hours, etc.)
 """
 import numpy as np
 import matplotlib.pyplot as plt
