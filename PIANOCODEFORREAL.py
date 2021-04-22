@@ -4,6 +4,7 @@
 Created on Sun Apr  4 14:17:03 2021
 
 @author: laurelmyers
+pair programmed with Sarah Zylberfuden and Michelle Liu
 """
 
 #-------------------CODE FROM OUTSIDE SOURCE: NISHU JAIN (START)---------------------------------
@@ -93,9 +94,10 @@ Created on Sun Apr  4 14:17:03 2021
    
     
    # numpy (should come pre-loaded), pygame, sys
+# goal to create numpy array of a wave with respect to time 
 
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # this was in order to adjust the sound of the keys
 
 samplerate = 44100 #Frequecy in Hz
 
@@ -131,14 +133,14 @@ def get_wave(freq, duration = 0.75):
     
     return wave
 
-a_wave = get_wave(215, 1)
+a_wave = get_wave(215, 1) # gets a one second long wave of frequency 215 Hz
 
 #wave features
 print(len(a_wave)) # 44100
 print(np.max(a_wave)) # 4096
 print(np.min(a_wave)) # -4096
 
-from pprint import pprint
+from pprint import pprint # prints a more complete data structure 
 
 def get_piano_notes():
     '''
@@ -199,7 +201,7 @@ write('asharp4.wav', samplerate, asharp4.astype(np.int16))
 write('B4.wav', samplerate, B4.astype(np.int16))
 write('csharp5.wav', samplerate, csharp5.astype(np.int16))
 write('C5.wav', samplerate, C5.astype(np.int16))
-
+# installations for pop up
 import pygame, sys
 from pygame import mixer
 pygame.mixer.pre_init(44100, -16, 1, 4096)
@@ -240,7 +242,7 @@ while True:
                 sys.exit()
                 
         if event.type == pygame.KEYDOWN: #when a specified key is pressed and held down, a note plays
-            if event.key == pygame.K_a:
+            if event.key == pygame.K_a: # when the letter a on your keyboard is pressed, A3 plays
                   A3_note.play(-1)
             if event.key == pygame.K_s:
                   B3_note.play(-1)      
@@ -313,89 +315,91 @@ while True:
                   c5sharp_note.fadeout(500)
             if event.key == pygame.K_SEMICOLON:
                   C5_note.fadeout(500)
-                  
+
+# NOTES ONLY                  
 # Visualizing the keyboard
-#
+# @author: sarahzylberfuden
+# we ended up doing a GUI in a different file
 # Demonstrates how to build a simple piano instrument playable
 # through the computer keyboard.
-#
+# #
  
-from music import *
-from gui import *
+# from music import *
+# from gui import *
  
-Play.setInstrument(PIANO)   # set desired MIDI instrument (0-127)
+# Play.setInstrument(PIANO)   # set desired MIDI instrument (0-127)
  
-# load piano image and create display with appropriate size
-pianoIcon = Icon("pianooctave.jpeg")     # image for complete piano
-d = Display("iPiano", pianoIcon.getWidth(), pianoIcon.getHeight())
-d.add(pianoIcon)       # place image at top-left corner
+# # load piano image and create display with appropriate size
+# pianoIcon = Icon("pianooctave.jpeg")     # image for complete piano
+# d = Display("iPiano", pianoIcon.getWidth(), pianoIcon.getHeight())
+# d.add(pianoIcon)       # place image at top-left corner
  
-# NOTE: The following loads a partial list of icons for pressed piano
-#       keys, and associates them (via parallel lists) with the
-# virtual keys corresponding to those piano keys and the corresponding
-# pitches.  These lists should be expanded to cover the whole octave
-# (or more).
+# # NOTE: The following loads a partial list of icons for pressed piano
+# #       keys, and associates them (via parallel lists) with the
+# # virtual keys corresponding to those piano keys and the corresponding
+# # pitches.  These lists should be expanded to cover the whole octave
+# # (or more).
+ # the jpeg images were ones downloaded, with the goal being to have the given image pop up
+# # load icons for pressed piano keys
+# # (continue loading icons for additional piano keys)
+# downKeyIcons = []    # holds all down piano-key icons
+# downKeyIcons.append( Icon("pianowhiteleftdown.jpeg") )   # C
+# downKeyIcons.append( Icon("pianoblackleftdown.jpeg") )       # C sharp
+# downKeyIcons.append( Icon("pianoDdown.jpeg") ) # D
+# downKeyIcons.append( Icon("pianodsharpdown.jpeg") )       # D sharp
+# downKeyIcons.append( Icon("pianoEdown.jpeg") )  # E
+# downKeyIcons.append( Icon("pianoFdown.jpeg") )   # F
  
-# load icons for pressed piano keys
-# (continue loading icons for additional piano keys)
-downKeyIcons = []    # holds all down piano-key icons
-downKeyIcons.append( Icon("pianowhiteleftdown.jpeg") )   # C
-downKeyIcons.append( Icon("pianoblackleftdown.jpeg") )       # C sharp
-downKeyIcons.append( Icon("pianoDdown.jpeg") ) # D
-downKeyIcons.append( Icon("pianodsharpdown.jpeg") )       # D sharp
-downKeyIcons.append( Icon("pianoEdown.jpeg") )  # E
-downKeyIcons.append( Icon("pianoFdown.jpeg") )   # F
+# # lists of virtual keys and pitches corresponding to above piano keys
+# virtualKeys = [VK_Z, VK_S, VK_X, VK_D, VK_C, VK_V]
+# pitches     = [C4,   CS4,  D4,   DS4,  E4,   F4]
  
-# lists of virtual keys and pitches corresponding to above piano keys
-virtualKeys = [VK_Z, VK_S, VK_X, VK_D, VK_C, VK_V]
-pitches     = [C4,   CS4,  D4,   DS4,  E4,   F4]
+# # create list of display positions for downKey icons
+# #
+# # NOTE:  This as hardcoded - they depend on the used images!
+# #
+# iconLeftXCoordinates = [0, 45, 76, 138, 150, 223]
  
-# create list of display positions for downKey icons
-#
-# NOTE:  This as hardcoded - they depend on the used images!
-#
-iconLeftXCoordinates = [0, 45, 76, 138, 150, 223]
+# keysPressed = []   # holds which keys are currently pressed
  
-keysPressed = []   # holds which keys are currently pressed
+# #####################################################################
+# # define callback functions
+# def beginNote( key ):
+#    """Called when a computer key is pressed.  Implements the
+#       corresponding piano key press (i.e., adds key-down icon on
+#       display, and starts note).  Also, counteracts the key-repeat
+#       function of computer keyboards.
+#    """
  
-#####################################################################
-# define callback functions
-def beginNote( key ):
-   """Called when a computer key is pressed.  Implements the
-      corresponding piano key press (i.e., adds key-down icon on
-      display, and starts note).  Also, counteracts the key-repeat
-      function of computer keyboards.
-   """
+#    # loop through all known virtual keys
+#    for ii in range( len(virtualKeys) ):   
  
-   # loop through all known virtual keys
-   for ii in range( len(virtualKeys) ):   
+#       # if this is a known key (and NOT already pressed)
+#       if key == virtualKeys[ii] and key not in keysPressed:  
  
-      # if this is a known key (and NOT already pressed)
-      if key == virtualKeys[ii] and key not in keysPressed:  
+#          # "press" this piano key (by adding pressed key icon)
+#          d.add( downKeyIcons[ii], iconLeftXCoordinates[i], 0 )
+#          Play.noteOn( pitches[ii] )    # play corresponding note
+#          keysPressed.append( key )    # avoid key-repeat
  
-         # "press" this piano key (by adding pressed key icon)
-         d.add( downKeyIcons[ii], iconLeftXCoordinates[i], 0 )
-         Play.noteOn( pitches[ii] )    # play corresponding note
-         keysPressed.append( key )    # avoid key-repeat
+# def endNote( key ):
+#    """Called when a computer key is released.  Implements the
+#       corresponding piano key release (i.e., removes key-down icon,
+#       and stops note).
+#    """
  
-def endNote( key ):
-   """Called when a computer key is released.  Implements the
-      corresponding piano key release (i.e., removes key-down icon,
-      and stops note).
-   """
+#    # loop through known virtual keys
+#    for ii in range( len(virtualKeys) ):   
  
-   # loop through known virtual keys
-   for ii in range( len(virtualKeys) ):   
+#       # if this is a known key (we can assume it is already pressed)
+#       if key == virtualKeys[ii]:  
  
-      # if this is a known key (we can assume it is already pressed)
-      if key == virtualKeys[ii]:  
+#          # "release" this piano key (by removing pressed key icon)
+#          d.remove( downKeyIcons[ii] )
+#          Play.noteOff( pitches[ii] )    # stop corresponding note
+#          keysPressed.remove( key )     # and forget key
  
-         # "release" this piano key (by removing pressed key icon)
-         d.remove( downKeyIcons[ii] )
-         Play.noteOff( pitches[ii] )    # stop corresponding note
-         keysPressed.remove( key )     # and forget key
- 
-#####################################################################
-# associate callback functions with GUI events
-d.onKeyDown( beginNote )
-d.onKeyUp( endNote )
+# #####################################################################
+# # associate callback functions with GUI events
+# d.onKeyDown( beginNote )
+# d.onKeyUp( endNote )
