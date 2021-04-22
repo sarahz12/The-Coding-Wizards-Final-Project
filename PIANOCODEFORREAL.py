@@ -3,8 +3,10 @@
 """
 Created on Sun Apr  4 14:17:03 2021
 
-@author: laurelmyers
-pair programmed with Sarah Zylberfuden and Michelle Liu
+Written by: Laurel Myers
+Pair programmed with Michelle Liu
+Debugging by: Sarah Zylberfuden
+Time Spent Total: 6 hours
 """
 
 #-------------------CODE FROM OUTSIDE SOURCE: NISHU JAIN (START)---------------------------------
