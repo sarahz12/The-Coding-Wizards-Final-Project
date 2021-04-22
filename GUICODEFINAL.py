@@ -116,11 +116,12 @@ def text_objects(text, font):
 
 # defining the black keys
 def black_btn(x,note):
-     mouse = pygame.mouse.get_pos() # clicking detection
+     mouse = pygame.mouse.get_pos() # helps with clicking detection
      click = pygame.mouse.get_pressed()
      x_coord = 55*x+175
      y_coord = 200
-
+# The 'mouse' indicates that when you hover the key the specific location indicated, it turns grey
+# clicking condition is click[0] == 1, and this is when the piano will play a sound
      if x_coord+35 > mouse[0] > x_coord and y_coord+100>mouse[1]>y_coord:
          pygame.draw.rect(screen,grey,(x_coord,y_coord,35,100)) # populating surface with 'objects' (keys) to be displayed
          if click[0] == 1:
@@ -137,7 +138,9 @@ def white_btn(x,note):
     y_coord = 200
     x_coord1 = 55*x + 175 
     y_coord1 = 275 
-
+# The 'mouse' indicates that when you hover the key the specific location indicated, it turns grey
+# clicking condition is click[0] == 1, and this is when the piano will play a sound
+# This has more locations since there are more white keys than black
     if (y_coord+100< mouse[1] < y_coord+175) and (x_coord+50 > mouse[0] > x_coord):
         pygame.draw.rect(screen,grey,(x_coord,y_coord,50,175))
         if click[0] == 1:
@@ -181,10 +184,10 @@ import sys
 
 running = True
 while running:
-    for events in pygame.event.get():
+    for events in pygame.event.get(): # returns the value for specific key in dictionary
 
-        if events.type == pygame.QUIT:
-            pygame.quit()
+        if events.type == pygame.QUIT: 
+            pygame.quit() # makes the system exit
             sys.exit()
             quit()
 # goal to create a canvas of desired size and then create a surface of smaller size containing the object to be displayed
