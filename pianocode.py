@@ -59,6 +59,7 @@ pprint(note_freqs)
            'f': 370.00069432367286,
            'g': 415.31173722644}
  '''
+# package needed for project
 import numpy as np
 
 def get_song_data(music_notes):
@@ -106,12 +107,15 @@ pygame.display.set_caption('Piano')
 screen.fill(background_colour)
 pygame.display.flip()
 running = True
+
+# while loop
 while running:
     event = pygame.event.wait ()
     if event.type == pygame.QUIT:
         running = False  
         pygame.quit ()
-    
+
+# import mixer for loading and playing sounds   
 from pygame import mixer
 pygame.mixer.pre_init(44100, -16, 2, 2048)
 mixer.init()
