@@ -3,10 +3,10 @@
 """
 Created on Mon Apr 12 20:27:13 2021
 
-# Written by: Sarah Zylberfuden
- Pair programmed with Michelle Liu
-# Debugging: Laurel Myers
-Time Spent: 9 hours
+Written by: Sarah Zylberfuden and Michelle Liu
+Took turns pair programming between two writers
+Debugging: Laurel Myers
+Time Spent: 12 hours (including research)
 
 
 """

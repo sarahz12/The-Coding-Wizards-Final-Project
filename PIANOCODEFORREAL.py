@@ -3,10 +3,10 @@
 """
 Created on Sun Apr  4 14:17:03 2021
 
-Written by: Laurel Myers
-Pair programmed with Michelle Liu
-Debugging by: Sarah Zylberfuden
-Time Spent Total: 6 hours
+Written by: Laurel Myers and Michelle Liu
+# took turns pair programming between all
+Debugging by: Sarah Zylberfuden and Laurel Myers
+Time Spent Total: 15 hours (including research)
 """
 
 #-------------------CODE FROM OUTSIDE SOURCE: NISHU JAIN (START)---------------------------------

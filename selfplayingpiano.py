@@ -3,10 +3,10 @@
 """
 Created on Fri Apr 16 14:39:38 2021
 
-Written by: Laurel Myers
-Pair Programmed with: Sarah Zylberfuden
-Debugging: All
-Time taken: 9 hours (including research)
+Written by: Laurel Myers and Sarah Zylberfuden
+Took turns pair programming
+Debugging: Michelle Liu
+Time taken: 10 hours (including research)
 
 
 """
